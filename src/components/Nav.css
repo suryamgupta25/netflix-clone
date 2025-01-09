@@ -1,10 +1,30 @@
-.nav_logo{
-    width: height*1440/817px;
-}
-.nav_avatar{
-    width: height;
+.nav{
+    transition-timing-function: ease-in;
+    transition-duration: 2s;
 }
 
-.nav_logo, .nav_avatar{
+.nav_contents{
+    display: flex;
     height: 100px;
+    width: 100%;
+    background-color:#111;
+    position: absolute;
+}
+
+.nav_logo{
+    height: 80px;
+    top: 10px;
+    width: height*1920/1080px;
+    left: 20px;
+    position: fixed;
+    cursor: pointer;
+}
+
+.nav_avatar{
+    width: 50px;
+    top: 20px;
+    height: width;
+    position: fixed;
+    right: 30px;
+    cursor: pointer;
 }
