@@ -1,4 +1,10 @@
-.logo{
-    width: 300px;
-    height: 150px;
+.nav_logo{
+    width: height*1440/817px;
+}
+.nav_avatar{
+    width: height;
+}
+
+.nav_logo, .nav_avatar{
+    height: 100px;
 }
