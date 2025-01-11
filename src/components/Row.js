@@ -14,27 +14,29 @@ function Row(props){
         return request;
     }
 
-    useEffect(() => getMovies, [props.fetchUrl]);
+    useEffect(() => getMovies);
 
-    console.log(movies)
+    //console.log(movies)
 
-    /*
-    const [isVisible, setVisible] = useState(true);
-    const domRef = useRef<HTMLDivElement>(null);
+    
+    const [isVisible, setVisible] = useState(false);
+    const domRef = useRef();
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => setVisible(entry.isIntersecting));
         });
-        observer.observe(domRef.current);
-        return () => observer.unobserve(domRef.current);
-    }, [])
-    */
+        const element = domRef.current;
+        observer.observe(element);
+        return () => { 
+            observer.unobserve(element);
+        }
+    }, []);
+
 
     return (
-        <div className ='row'>
-            <h2 className = 'row_category fade_in'>{props.title}</h2>
-            
-            <div className = 'row_posters fade_in'>
+        <div className = {`row ${isVisible? 'fade_row' : ''} ${!isVisible? 'hide_row' : ''}`} ref = {domRef}>
+            <h2 className = 'row_category'>{props.title}</h2>
+            <div className = 'row_posters'>
                 {movies.map((movie, index) =>  <img className = "poster_image" src = {`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt = ""></img>)}
             </div>
         </div>

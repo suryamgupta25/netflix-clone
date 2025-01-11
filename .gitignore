@@ -6,6 +6,7 @@
 .pnp.js
 
 .env
+.eslintrc
 
 package-lock.json
 

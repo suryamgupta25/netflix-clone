@@ -9,7 +9,7 @@ function Nav(){
         if (typeof window !== 'undefined'){
             if (window.scrollY > 280){
                 handleShow(true);
-            } else {
+            } else if (window.scrollY < 240){
                 handleShow(false);
             }
         } else {

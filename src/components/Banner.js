@@ -10,20 +10,22 @@ function Banner(){
 
     async function getBannerMovie(){
         const request = await instance.get(requests.fetchTopRated);
-        console.log(request)
+        //console.log(request)
         setMovie(request.data.results[Math.floor(Math.random() * (request.data.results.length - 1))])
         return request;
     }
 
     useEffect(() => getBannerMovie, [])
 
-    console.log("Obtained Banner Movie: ")
-    console.log(movie)
+    //console.log("Obtained Banner Movie: ")
+    //console.log(movie)
+    /*
     try {
         console.log(movie?.overview);
     } catch (error) {
         throw new Error ("Invalid Movie!")
     }
+    */
 
     // Truncates the description to the first n characters, and add ... to the end
     // If the n'th character is in the middle of the word, cut off the last word and add ... to the end

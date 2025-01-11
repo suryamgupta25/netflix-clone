@@ -1,5 +1,5 @@
 .nav_black{
-    background-color: #111
+    background-color: #111;
 }
 
 .nav_contents{
@@ -9,8 +9,8 @@
     width: 100%;
     position: fixed;
     transition-timing-function: ease-in;
-    transition: all 0.5s;
-    
+    transition-duration: 0.25s;
+    z-index: 1;
 }
 
 .nav_logo{
