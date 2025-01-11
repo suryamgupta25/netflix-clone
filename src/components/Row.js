@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import instance from '../axios';
 import './Row.css';
 
@@ -18,9 +18,25 @@ function Row(props){
 
     console.log(movies)
 
+    /*
+    const [isVisible, setVisible] = useState(true);
+    const domRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => setVisible(entry.isIntersecting));
+        });
+        observer.observe(domRef.current);
+        return () => observer.unobserve(domRef.current);
+    }, [])
+    */
+
     return (
         <div className ='row'>
-            <h2 className = 'row_category'>{props.title}</h2>
+            <h2 className = 'row_category fade_in'>{props.title}</h2>
+            
+            <div className = 'row_posters fade_in'>
+                {movies.map((movie, index) =>  <img className = "poster_image" src = {`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt = ""></img>)}
+            </div>
         </div>
     )
 }

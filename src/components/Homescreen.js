@@ -11,6 +11,10 @@ function HomeScreen(){
             <Nav/>
             <Banner/>
             <Row
+            title = "Netflix Originals"
+            fetchUrl = {requests.fetchNetflixOriginals}
+            />
+            <Row
             title="Trending Now"
             fetchUrl={requests.fetchTrending}
             />
@@ -20,23 +24,23 @@ function HomeScreen(){
             />
             <Row
             title="Action Movies"
-            fetchUrl = {requests.fetchTopRated}
+            fetchUrl = {requests.fetchActionMovies}
             />
             <Row
             title="Comedy Movies"
-            fetchUrl = {requests.fetchTopRated}
+            fetchUrl = {requests.fetchComedyMovies}
             />
             <Row
             title="Horror Movies"
-            fetchUrl = {requests.fetchTopRated}
+            fetchUrl = {requests.fetchHorrorMovies}
             />
             <Row
             title="Romance Movies"
-            fetchUrl = {requests.fetchTopRated}
+            fetchUrl = {requests.fetchRomanceMovies}
             />
             <Row
             title="Documentaries"
-            fetchUrl = {requests.fetchTopRated}
+            fetchUrl = {requests.fetchDocumentaries}
             />
 
         </div>
