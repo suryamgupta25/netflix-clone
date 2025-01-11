@@ -7,7 +7,7 @@ function Nav(){
 
     const moveNavbar = () => {
         if (typeof window !== 'undefined'){
-            if (window.scrollY > 300){
+            if (window.scrollY > 280){
                 handleShow(true);
             } else {
                 handleShow(false);
