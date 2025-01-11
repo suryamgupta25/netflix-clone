@@ -28,6 +28,11 @@ function HomeScreen(){
             <h1>Akul</h1>
             <h1>Akul</h1>
             <h1>Akul</h1>
+            <h1>Akul</h1>
+            <h1>Akul</h1>
+            <h1>Akul</h1>
+            <h1>Akul</h1>
+            <h1>Akul</h1>
             
         </div>
     )

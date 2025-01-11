@@ -1,6 +1,5 @@
 .banner{
     background-size: cover;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/800px-Black_flag.svg.png");
     background-position: center;
     height: 448px;
     object-fit: contain;
@@ -10,9 +9,9 @@
     color: white;
     margin-left: 40px;
     position: relative;
-    top: 140px;
+    top: 120px;
     object-fit: contain;
-    height: 350px;
+    height: 300px;
 }
 
 .banner_title{
@@ -54,11 +53,11 @@
 }
 
 .banner_end{
-    height: 6.1rem;
+    height:9.25rem;
     background-image: linear-gradient(
         180deg,
         transparent,
-        #111,
-        rgba(37, 37, 37, 0.61)
+        rgba(37, 37, 37, 0.8),
+        #111
     );
 }
