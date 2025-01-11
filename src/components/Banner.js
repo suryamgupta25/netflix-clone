@@ -38,13 +38,13 @@ function Banner(){
             return string;
         }
     }
-    
+
     // For Banner.css
     // background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/800px-Black_flag.svg.png");
 
     return (
         <header className = 'banner' style={{
-            backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`
+            backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
         }}>
             <div className = 'banner_content'>
                 <h1 className = 'banner_title'>{movie?.name || movie?.title || movie?.the_original_title}</h1>
