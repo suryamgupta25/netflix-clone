@@ -1,8 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # environment variables, including API key
-env.js
-Requests.js
+.env
 
 # dependencies
 /node_modules
