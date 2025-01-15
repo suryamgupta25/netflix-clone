@@ -4,6 +4,20 @@ import requests from "../Requests.js";
 import instance from "../axios.js";
 
 
+// Truncates the description to the first n characters, and add ... to the end
+// If the n'th character is in the middle of the word, cut off the last word and add ... to the end
+
+export function truncateDescription(string, n){
+    if (string.length > n - 3){
+       const newString = string.substring(0, n - 3)
+       const words = newString.split(' ')
+       words.pop()
+       return words.join(' ') + "...";
+    } else {
+        return string;
+    }
+}
+
 function Banner(){
 
     const [movie, setMovie] = useState([]);
@@ -26,21 +40,6 @@ function Banner(){
         throw new Error ("Invalid Movie!")
     }
     */
-
-    // Truncates the description to the first n characters, and add ... to the end
-    // If the n'th character is in the middle of the word, cut off the last word and add ... to the end
-
-    function truncateDescription(string, n){
-        if (string.length > n - 3){
-           const newString = string.substring(0, n - 3)
-           const words = newString.split(' ')
-           words.pop()
-           return words.join(' ') + "...";
-        } else {
-            return string;
-        }
-    }
-
     // For Banner.css
     // background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Black_flag.svg/800px-Black_flag.svg.png");
 

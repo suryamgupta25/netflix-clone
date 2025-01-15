@@ -37,18 +37,82 @@
     visibility: hidden;
 }
 
-.poster_image{
-    width: 150px;
+.poster_container .poster_image{
     height: 200px;
+}
+
+.poster_container .poster_image{
+    width: 150px;
+}
+
+.poster_container{
+    position: relative;
 
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-
-    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-.poster_image:hover{
-    transform: scale(1.05)
+.play_button{
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    width: 0;
+    height: 0;
+    border-top: 24px solid transparent;
+    border-bottom: 24px solid transparent;
+    border-left: 36px solid #888888;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 3;
+}
+
+.movie_info{
+    margin-left: 20px;
+    position: absolute;
+    top: 0%;
+    left: -20%;
+    width: 200px;
+    height: 250px;
+    background-color: #111;
+    opacity: 0;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+}
+
+.movie_info_content{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.3;
+}
+
+.movie_info_title{
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.zIndex4{
+    z-index: 4;
+}
+
+.zIndex5{
+    z-index: 5;
+}
+
+.play_button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.poster_container:hover .movie_info {
+    transform: translateX(80%);
+    opacity: 1;
+}
+
+.poster_container:hover .play_button{
+    opacity: 1;
 }
