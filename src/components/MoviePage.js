@@ -2,6 +2,10 @@ import React from 'react';
 import Nav from './Nav.js';
 import './Banner.css';
 
+// Figure out how these pages will be generated immediately when the play buttons are clicked
+// Also have to figure out routing to these pages
+// Not a fixed number of routes or routes themselves - movies will change
+
 function MoviePage({movie}){
     return (
         <div className = "moviePage">
