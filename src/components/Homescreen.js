@@ -1,11 +1,45 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Homescreen.css";
 import Nav from './Nav.js';
+import instance from '../axios';
 import Banner from './Banner.js';
 import Row from './Row.js';
 import requests from '../Requests.js';
 
+
 function HomeScreen(){
+
+    const [moviePages, setMoviePages] = useState([]);
+
+    /*
+    const movieRequests = [requests.fetchTopRated,
+        requests.fetchNetflixOriginals,
+        requests.fetchTrending,
+        requests.fetchActionMovies,
+        requests.fetchComedyMovies, 
+        requests.fetchHorrorMovies, 
+        requests.fetchRomanceMovies, 
+        requests.fetchDocumentaries
+    ]
+    */
+
+    useEffect(() => {
+        async function addMovieRoutes(){
+            const request = await instance.get(requests.fetchTopRated);
+            setMoviePages([...moviePages, request.data.results])
+            return request;
+        }
+        addMovieRoutes();
+    });
+
+    if (moviePages.length === 0) {
+        return (
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
     return (
         <div className='homeScreen'>
             <Nav/>
@@ -46,9 +80,8 @@ function HomeScreen(){
             title="Documentaries"
             fetchUrl = {requests.fetchDocumentaries}
             />
-
         </div>
     )
 }
 
-export default HomeScreen
+export default HomeScreen;
