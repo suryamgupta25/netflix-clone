@@ -68,8 +68,6 @@ function MoviePage(){
         getGenres();
         //eslint-disable-next-line
     }, []); // Empty dependency array so this function can only run once, during first mount of the component
-
-    console.log(genreList);
     
     function getDay(){
         const months = {
@@ -129,29 +127,33 @@ function MoviePage(){
                 <div className = 'banner_end'/>
             </div>
 
-            <h1> {movie.overview}</h1>
+            <div className='movie_text'>
+                <h1 className='section_header'> About It </h1>
+                <h2 className='movie_description'> {movie.overview}</h2>
+                <h3 className = 'genre_list'><i>Genres</i>: {genreList.join(', ')}</h3>
+                <h3 className = 'release_date'><i>Date Released</i>: {getDay()}</h3>
 
-            
-            <h1 className='rating_score'>Rating: {movieRating}/10</h1>
-            <h3 className='rating_score'>(across {movie.vote_count} reviewers)</h3>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-            {
-                // 10 star rating using the font awesome star character
-            }
-            <div className="rating">
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
-                <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                
+                <h1 className='section_header' style={{"marginTop": "5rem"}}>Ratings </h1>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                {
+                    // 10 star rating using the font awesome star character
+                }
+                <div className="rating">
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
+                    <h2 className='rating_score'>{movieRating + 10}/10</h2>
+                </div>        
+                <h3 className='rating_score'>(across {movie.vote_count} reviews)</h3>
             </div>
-            <h2 className = 'release_date'>Date Released: {getDay()}</h2>
-            <h3 className = 'genre_list'>Genres: {genreList.join(', ')}</h3>
         </div>
     )
 }
