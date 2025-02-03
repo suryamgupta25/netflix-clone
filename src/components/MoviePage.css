@@ -2,3 +2,45 @@
     height: 100%;
     background-color: #111;
 }
+
+/* Star Rating */
+
+.fa-star{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transform: scale(2);
+}
+
+.checked{
+    color: orange;
+}
+
+.partially-checked{
+    color: white;
+    position: relative;
+}
+
+.unchecked{
+    color: white;
+}
+
+.partially-checked::after{
+
+    /* The Font Awesome star glyph */
+    content: "\f005";
+    
+    /* Use the same font as .fa classes (FontAwesome 4.7 likely has this name) */
+    font-family: "FontAwesome";
+    font-style: normal;   /* sometimes necessary for FA icons in pseudo-elements */
+    font-weight: normal;  /* sometimes necessary for FA icons in pseudo-elements */
+
+    width: var(--rating);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: orange;
+    overflow: hidden;
+    white-space: nowrap;
+}
