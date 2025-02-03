@@ -11,26 +11,16 @@ function HomeScreen(){
 
     const [moviePages, setMoviePages] = useState([]);
 
-    /*
-    const movieRequests = [requests.fetchTopRated,
-        requests.fetchNetflixOriginals,
-        requests.fetchTrending,
-        requests.fetchActionMovies,
-        requests.fetchComedyMovies, 
-        requests.fetchHorrorMovies, 
-        requests.fetchRomanceMovies, 
-        requests.fetchDocumentaries
-    ]
-    */
-
+    // With an empty array inside useEffect, the closure will only be called once, which is when the component is first mounted
+    // If removed, the closure will be called every time the component re-renders, which is every time it changes
     useEffect(() => {
         async function addMovieRoutes(){
             const request = await instance.get(requests.fetchTopRated);
-            setMoviePages([...moviePages, request.data.results])
+            setMoviePages([request.data.results])
             return request;
         }
         addMovieRoutes();
-    });
+    }, [])
 
     if (moviePages.length === 0) {
         return (

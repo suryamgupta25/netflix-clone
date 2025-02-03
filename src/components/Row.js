@@ -13,11 +13,17 @@ function Row(props){
 
     const navigate = useNavigate();
 
-    async function getMovies(){
-        const request = await instance.get(props.fetchUrl);
-        setMovies(request.data.results);
-        return request;
-    }
+    // Loads movies into the row whenever props.fetchUrl is updated 
+    // (when the correct URL has been passed into the Row component in HomeScreen.js)
+    // Prevents constant API requests even when all of the movies have been rendered
+    useEffect(() => {
+        async function getMovies(){
+            const request = await instance.get(props.fetchUrl);
+            setMovies(request.data.results);
+            return request;
+        }
+        getMovies();
+    }, [props.fetchUrl])  
 
     const [useZScore4, setUseZScore4] = useState(false);
 
@@ -26,8 +32,6 @@ function Row(props){
         setUseZScore4(prev => !prev);
         console.log(useZScore4);
     };
-
-    useEffect(() => getMovies);
     
     // Determines if each row of movies is on the screen or not
     // If so, the entry is set to be visible

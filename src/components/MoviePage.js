@@ -1,24 +1,77 @@
 import Nav from './Nav.js';
+import React, {useState, useEffect} from 'react';
 import './Banner.css';
 import {useLocation} from "react-router-dom";
 import './MoviePage.css';
-//import instance from '../axios.js';
+import instance from '../axios.js';
 
 // When window.open() is used instead of navigate(), the session resets, so we can't grab the movie directly from the state
 // Instead, we can get the id from params and do another lookup using the API to get the movie
 
-export default function MoviePage(){
+function MoviePage(){
+
+    const [genreList, setGenreList] = useState([]);
 
     const {state} = useLocation();
     const movie = state.movie;
 
-    if (!movie) {
-        return (
-            <div>Movie not found</div>
-        )
-    }
+    const genres = movie.genre_ids
     
-    function getDay(day){
+    useEffect(() => {
+        async function getGenres(){
+            //console.log(genres)
+            const request = await instance.get(`/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+     
+            const movie_genre_list = request.data.genres
+            //console.log(movie_genre_list);
+
+            // The problem with the below for-in when trying to loop through an array is the values of the variables g and m
+            // g and m are the enumerable properties of an object, usually strings. In the case of an array, these will be the indices
+            // If we want to loop through values, use either a numerical index or forEach
+
+            /*
+            for (const g in genres){
+                console.log(g)
+                for (const m in movie_genre_list){
+                    console.log(m)
+                    if (m.id === g){
+                        setGenreList(prev => [prev, m.name])
+                    }
+                }
+            }
+            */
+
+            // Can't directly use break or continue with for loop, but to stop it, can set a flag variable or use every()/some()
+
+            let movieGenres = genres.reduce((acc, g) => {
+                //console.log(g);
+                movie_genre_list.some(m => {
+                    //console.log(m.id);
+                    if (m.id === g){
+                        //The problem with calling setGenreList() multiple times is because states in React are immutable
+                        // Calling setGenreList multiple times will prevent genreList from being set equal to something else
+                        // Need to either edit immutably or do operations on mutable arrays, then call setGenreList after once everything is completed
+
+                        //setGenreList(prev => {prev.push(m.name); return prev})
+                        acc.push(m.name)
+                        return true;
+                    }
+                    return false;
+                })
+                return acc;
+            }, []);
+
+            setGenreList(movieGenres)
+            return request
+        }
+
+        getGenres();
+        //eslint-disable-next-line
+    }, []); // Empty dependency array so this function can only run once, during first mount of the component
+
+    console.log(genreList);
+    
+    function getDay(){
         const months = {
             '01': 'January',
             '02': 'February',
@@ -33,7 +86,7 @@ export default function MoviePage(){
             '11': 'November',
             '12': 'December'
         }
-        let dates = day.split("-")
+        let dates = movie.release_date?.split("-")
         return `${months[dates[1]]} ${dates[2]}, ${dates[0]}`
     }
 
@@ -53,6 +106,12 @@ export default function MoviePage(){
     */
 
     let movieRating = movie.vote_average.toFixed(1)
+
+    if (!movie) {
+        return (
+            <div>Movie or genres not found</div>
+        )
+    }
 
     return (
         <div className = "moviePage">
@@ -91,38 +150,10 @@ export default function MoviePage(){
                 <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
                 <span className={`fa fa-star ${movieRating-- > 1? `checked` : movieRating + 1 > 0? "partially-checked" : "unchecked"}`} style={(movieRating + 1)<1 && (movieRating + 1) > 0? {"--rating": `${(movieRating + 1) * 100}%`} : {}}></span>
             </div>
-            <h2 className = 'release_date'>Date Released: {getDay(movie.release_date)}</h2>
-            <h3 className = 'genre_list'>Genres: </h3>
-            {
-                // Optional: Create 10 stars here and color them in based on the rating score
-            }
-            {
-                // Required: Write a list of genres based on the movie's genres
-            }
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-            <h1>Surlax</h1>
-
+            <h2 className = 'release_date'>Date Released: {getDay()}</h2>
+            <h3 className = 'genre_list'>Genres: {genreList.join(', ')}</h3>
         </div>
     )
 }
+
+export default MoviePage;
